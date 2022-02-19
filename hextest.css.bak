@@ -1,0 +1,55 @@
+body {
+  background-color: powderblue;
+}
+
+.hex-grid__list {
+    --amount: 5;
+    --counter: 1;
+    display: grid;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    grid-template-columns: repeat(var(--amount), 1fr 2fr) 1fr;
+
+}
+
+/*
+.hex-grid__item {
+    position: relative;
+    grid-column: 1 / span 3;
+    grid-row: calc(var(--counter) + var(--counter)) / span 2;
+    height: 0;
+    padding-bottom: 100%;
+
+    // Columns
+    @for $i from 1 through $amount {
+        &:nth-of-type(#{$amount}n + #{$i}) {
+            grid-column: #{$i + $i - 1} / span 3;
+            @if $i % 2 == 0 {
+                grid-row: calc(var(--counter) + var(--counter) - 1) / span 2;
+            }
+        }
+    }
+
+    // Rows
+    @for $i from 1 through 20 {
+        &:nth-of-type(n + #{$i * $amount + 1}) {
+            --counter: #{$i + 1};
+        }
+    }
+
+}
+*/
+
+.hex-grid__content {
+/*    position: absolute;
+*/
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    clip-path: polygon(75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%, 25% 0);
+    padding: 2rem 25%;
+	
+}
