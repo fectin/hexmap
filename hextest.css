@@ -1,5 +1,5 @@
 body {
-  background-color: powderblue;
+  
 }
 
 .hex-grid__list {
@@ -8,20 +8,18 @@ body {
     display: grid;
     list-style-type: none;
     margin: 0;
-    padding: 0;
+    padding: 5px;
     grid-template-columns: repeat(var(--amount), 1fr 2fr) 1fr;
-
+	background-color: powderblue;
 }
 
-/*
-.hex-grid__item {
-    position: relative;
-    grid-column: 1 / span 3;
-    grid-row: calc(var(--counter) + var(--counter)) / span 2;
-    height: 0;
-    padding-bottom: 100%;
 
-    // Columns
+.hex-grid__item {
+	padding: 2px;
+/*	position: relative;
+	height: 100%;
+
+     // Columns
     @for $i from 1 through $amount {
         &:nth-of-type(#{$amount}n + #{$i}) {
             grid-column: #{$i + $i - 1} / span 3;
@@ -37,18 +35,14 @@ body {
             --counter: #{$i + 1};
         }
     }
-
-}
 */
+}
+
 
 .hex-grid__content {
-/*    position: absolute;
-*/
-    left: 0;
-    top: 0;
-
+    height: 100%;
+	left: 50%;
+    top: 50%;
     background-color: white;
     clip-path: polygon(75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%, 25% 0);
-    padding: 2rem 25%;
-	
 }
