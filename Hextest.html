@@ -3,146 +3,64 @@
 <head>
 <meta charset="utf-8">
 <title>Hexagonal Grid</title>
-<link rel="stylesheet" href="hextest.css">
+<link rel="stylesheet" href="hexes.css">
+<script>
+"use strict";
+function queueDisplayUpdate()	{
+	displayUpdate(document.getElementById("cols").value, document.getElementById("rows").value)
+}
+function displayUpdate(colCount = 5, rowCount = 3) {
+	let padSize = 0.5;
+	let displayStuff = "";
+	let hexes = "";
+	displayStuff += ":root {"
+	displayStuff += `	--colCount: ${colCount};`
+	displayStuff += `	--rowCount: ${rowCount};`
+	displayStuff += `	--padSize: ${padSize};`
+	displayStuff += "}"
+	
+	
+	
+	hexes += `<ul class="hex-grid__list">`
+	for (let curCol = 0; curCol < colCount; curCol+=1) {
+		for(let curRow = 0; curRow < rowCount; curRow+=1) {
+			hexes += `<li class="hex-grid__item" style = "grid-area: ${(((curRow+1)*2) - ((curCol+1)%2) )} / ${(curCol*2)+1} / span 2 / span 3;">`;
+			hexes += `<div class="hex-grid__content">`;
+			
+			/*This adds a XXYY grid number to all hexes*/
+			hexes += `${(curRow < 9 ? '0' : '') + (curRow+1)}${(curCol < 9 ? '0' : '') + (curCol+1)}`
+			
+			//This is where to add content!
+			
+			hexes += "</div></li>"
+		}	
+	}
+	hexes += `</ul>`
+	
+	document.getElementById("cssVars").innerHTML = displayStuff;
+	document.getElementById("hexlist").innerHTML = hexes;
+	
+	
+	
+}
+
+
+</script>
 </head>
 <body>
+<style id="cssVars">
+	<!--This will get replaced by the diplayUpdate function-->
+</style>
+<form>
+<input type="text" id="cols" name="columns" value="5">
+<input type="text" id="rows" name="rows" value="3">
+</form>
+<button type="button" onclick="queueDisplayUpdate()">Show Hex Map!</button>
 
 
-
-
-<ul class="hex-grid__list" style="width:640px; height:346px">
-	<li class="hex-grid__item" style = "grid-column: 1 / span 3; grid-row: 1/ span 2;">
-		<div class="hex-grid__content">
-			11
-		</div>
-	</li>
-	<li class="hex-grid__item" style = "grid-column: 3 / span 3; grid-row: 2/ span 2;">
-		<div class="hex-grid__content">
-			12
-		</div>
-	</li>
-	<li class="hex-grid__item" style = "grid-column: 5 / span 3; grid-row: 1/ span 2;">
-		<div class="hex-grid__content">
-			13
-		</div>
-	</li>
-	<li class="hex-grid__item" style = "grid-column: 7 / span 3; grid-row: 2/ span 2;">
-		<div class="hex-grid__content">
-			14
-		</div>
-	</li>
-	<li class="hex-grid__item" style = "grid-column: 9 / span 3; grid-row: 1/ span 2;">
-		<div class="hex-grid__content">
-			15
-		</div>
-	</li>
-	<li class="hex-grid__item" style = "grid-column: 1 / span 3; grid-row: 3/ span 2;">
-		<div class="hex-grid__content">
-			21
-		</div>
-	</li>
-	<li class="hex-grid__item" style = "grid-column: 3 / span 3; grid-row: 4/ span 2;">
-		<div class="hex-grid__content">
-			22
-		</div>
-	</li>
-	<li class="hex-grid__item" style = "grid-column: 5 / span 3; grid-row: 3/ span 2;">
-		<div class="hex-grid__content">
-			23
-		</div>
-	</li>
-	<li class="hex-grid__item" style = "grid-column: 7 / span 3; grid-row: 4/ span 2;">
-		<div class="hex-grid__content">
-			24
-		</div>
-	</li>
-	<li class="hex-grid__item" style = "grid-column: 9 / span 3; grid-row: 3/ span 2;">
-		<div class="hex-grid__content">
-			25
-		</div>
-	</li>
-	<li class="hex-grid__item" style = "grid-column: 1 / span 3; grid-row: 5/ span 2;">
-		<div class="hex-grid__content">
-			31
-		</div>
-	</li>
-	<li class="hex-grid__item" style = "grid-column: 3 / span 3; grid-row: 6/ span 2;">
-		<div class="hex-grid__content">
-			32
-		</div>
-	</li>
-	<li class="hex-grid__item" style = "grid-column: 5 / span 3; grid-row: 5/ span 2;">
-		<div class="hex-grid__content">
-			33
-		</div>
-	</li>
-	<li class="hex-grid__item" style = "grid-column: 7 / span 3; grid-row: 6/ span 2;">
-		<div class="hex-grid__content">
-			34
-		</div>
-	</li>
-	<li class="hex-grid__item" style = "grid-column: 9 / span 3; grid-row: 5/ span 2;">
-		<div class="hex-grid__content">
-			35
-		</div>
-	</li>
-	
-	
-<!--
-<!--
-    <li class="hex-grid__item">
-        <div class="hex-grid__content">
-            11
-        </div>
-    </li>
-    <li class="hex-grid__item">
-        <div class="hex-grid__content">
-            12
-        </div>
-    </li>
-    <li class="hex-grid__item">
-        <div class="hex-grid__content">
-            13
-        </div>
-    </li>
-    <li class="hex-grid__item">
-        <div class="hex-grid__content">
-            14
-        </div>
-    </li>
-    <li class="hex-grid__item">
-        <div class="hex-grid__content">
-            15
-        </div>
-    </li>
-	<li class="hex-grid__item">
-        <div class="hex-grid__content">
-            21
-        </div>
-    </li>
-    <li class="hex-grid__item">
-        <div class="hex-grid__content">
-            22
-        </div>
-    </li>
-    <li class="hex-grid__item">
-        <div class="hex-grid__content">
-            23
-        </div>
-    </li>
-    <li class="hex-grid__item">
-        <div class="hex-grid__content">
-            24
-        </div>
-    </li>
-    <li class="hex-grid__item">
-        <div class="hex-grid__content">
-            25
-        </div>
-    </li>
--->
-</ul>
-
+<div id="hexlist">
+	<!--This will get replaced by the diplayUpdate function-->
+</div>
 
 </body>
 

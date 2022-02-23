@@ -1,24 +1,32 @@
+
+
+:root {
+	--hexSize: max(min(calc(90vw/((var(--colCount)*3)+1)), calc(90vh/(((var(--rowCount)*2)+1)*1.732))), 6px);
+	--fontSize: calc(var(--hexSize))
+	
+}
+
+
 body {
-  
+
 }
 
 .hex-grid__list {
-    --amount: 5;
-    --counter: 1;
+	width: calc(((var(--colCount)*3)+1)*var(--hexSize));
+	height: calc(((var(--rowCount)*2)+1)*1.732*var(--hexSize));
     display: grid;
     list-style-type: none;
     margin: 0;
     padding: 5px;
-    grid-template-columns: repeat(var(--amount), 1fr 2fr) 1fr;
+    grid-template-columns: repeat(var(--colCount), 1fr 2fr) 1fr;
 	background-color: powderblue;
 }
 
 
 .hex-grid__item {
-	padding: 2px;
-/*	position: relative;
-	height: 100%;
-
+	padding: calc(var(--padSize)*1px);
+/*	max-height: calc(1.732*var(--hexSize));
+	position: relative;
      // Columns
     @for $i from 1 through $amount {
         &:nth-of-type(#{$amount}n + #{$i}) {
@@ -40,9 +48,11 @@ body {
 
 
 .hex-grid__content {
-    height: 100%;
-	left: 50%;
-    top: 50%;
-    background-color: white;
+	font-size: var(--fontSize);
+	overflow: hidden;
+    position:relative;
+	padding: 0 25%;
+	height: 100%;/**/
+	background-color: white;
     clip-path: polygon(75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%, 25% 0);
 }
