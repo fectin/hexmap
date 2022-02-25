@@ -2,7 +2,7 @@
 
 :root {
 	--hexSize: max(min(calc(90vw/((var(--colCount)*3)+1)), calc(90vh/(((var(--rowCount)*2)+1)*1.732))), 6px);
-	--fontSize: calc(var(--hexSize))
+	--fontSize: calc(var(--hexSize)/2)
 	
 }
 
