@@ -23,14 +23,20 @@ export default class LCG {
 		return (Math.floor(this.rand()*sides)+1);
 	}
 	
+	getSeed()	{
+		return this.#seed;
+	}
+	
 	#hash(seed)	{
 		let outputBin = "0";
 		let output = 0;
 		
 		// make the seed have length = 128 characters
-		seed = "q" + seed.toString().slice(-64) + seed.toString() // add something to handle blank, make it care about the first and last 64 characters. 
-															//So if the whole thing overflows 128 chars, and it has a cadence at the end, the cadence is part of the seed.
-		seed = seed.padEnd(128,seed); 							//repeat seed until 128 chars
+		seed = "q" + seed.toString().slice(-64) + seed.toString() 	// add something to handle blank, make it care about the first and last 64 characters. 
+																	//So if the whole thing overflows 128 chars, and it has a cadence at the end, 
+																	//the cadence is part of the seed.
+		
+		seed = seed.padEnd(128,seed); 	//repeat seed until 128 chars
 		
 		//use the first two characters to generate a 16-bit number
         output = parseInt((seed.charCodeAt(0).toString(2).padStart(8,"0") + seed.charCodeAt(1).toString(2).padStart(8,"0")), 2);

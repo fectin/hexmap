@@ -2,8 +2,11 @@
 
 :root {
 	--hexSize: max(min(calc(90vw/((var(--colCount)*3)+1)), calc(90vh/(((var(--rowCount)*2)+1)*1.732))), 6px);
-	--fontSize: calc(var(--hexSize)/2)
-	
+	--hexHeight: calc(2*1.732*var(--hexSize));
+	--fontSize: calc(var(--hexHeight)/4);
+	--BGColor: powderblue;
+	--hexNumColor: #757575; 
+	--hexContentColor: #000000;
 }
 
 
@@ -19,40 +22,46 @@ body {
     margin: 0;
     padding: 5px;
     grid-template-columns: repeat(var(--colCount), 1fr 2fr) 1fr;
-	background-color: powderblue;
+	background-color: var(--BGColor, black);
 }
 
 
 .hex-grid__item {
 	padding: calc(var(--padSize)*1px);
-/*	max-height: calc(1.732*var(--hexSize));
-	position: relative;
-     // Columns
-    @for $i from 1 through $amount {
-        &:nth-of-type(#{$amount}n + #{$i}) {
-            grid-column: #{$i + $i - 1} / span 3;
-            @if $i % 2 == 0 {
-                grid-row: calc(var(--counter) + var(--counter) - 1) / span 2;
-            }
-        }
-    }
 
-    // Rows
-    @for $i from 1 through 20 {
-        &:nth-of-type(n + #{$i * $amount + 1}) {
-            --counter: #{$i + 1};
-        }
-    }
-*/
 }
 
 
-.hex-grid__content {
+.hex-grid__background {
 	font-size: var(--fontSize);
 	overflow: hidden;
     position:relative;
-	padding: 0 25%;
+	padding: 0 0%;
 	height: 100%;/**/
 	background-color: white;
     clip-path: polygon(75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%, 25% 0);
+}
+
+.hex-grid__content {
+	height: 100%;
+	width: 100%;
+	position:absolute;
+	left: 0;
+	top: 0;
+	overflow: hidden;
+	background: rgba(0, 0, 0, 0);
+	clip-path: polygon(75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%, 25% 0);
+	font-size: var(--hexSize);
+	display:grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 1fr;
+	
+}
+
+.hex-grid__hexNums {
+	grid-column: 1 / 1;
+	grid-row: 1 / 1;
+	padding: 0 25%;
+	font-size: calc(var(--fontSize)/2);
+	color: var(--hexNumColor, var(--BGColor, #000000));
 }

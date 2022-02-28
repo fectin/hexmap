@@ -17,4 +17,4 @@ export default class subsector	{
 	}
 }
 
-var mysuss = new subsector();
+//var mysuss = new subsector();
