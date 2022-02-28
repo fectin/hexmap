@@ -3,12 +3,43 @@
 <head>
 <meta charset="utf-8">
 <title>Hexagonal Grid</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+
 <link rel="stylesheet" href="hexes.css">
+
+<script type ="module">
+	var mymap;
+	import lcg from './LCG.js';
+	mymap = new lcg();
+</script>
+
+
 <script>
 "use strict";
+/*
+var mymap;
+
+import('./Subsector.js')
+      .then(starmap => {
+      console.log(starmap);
+	mymap = new starmap.default();
+      })
+      .catch(err => {
+        console.log(err);
+      });
+*/
+
+
 function queueDisplayUpdate()	{
+	console.log("hi");
+	
+
+	//let newSubsector = loadSubsector();
+	
+	
 	let colCount = document.getElementById("cols").value;
-	let rowCount = document.getElementById("rows").value;
+	let rowCount = document.getElementById("rows").value; 
+	
 	
 	let hexContent = [];
 	for (let curCol = 0; curCol < colCount; curCol+=1) {
@@ -22,7 +53,14 @@ function queueDisplayUpdate()	{
 
 
 function drawHexes(hexArray) {
-	//takes an array in 
+	//takes an array of arrays (simulating a 2d array)
+	//first index is column (left to right)
+	//second index is row (top to bottom)
+	//content of each is the content of the hex
+	//first hex is offset up, second down, third up, etc.
+	//this uses the length of hexArray[0] as the secind dimension. 
+	//Any longer arrays will be truncated, any shorter will have "undefined" in the hexes.
+	
 	let padSize = 0.5;
 	let displayStuff = "";
 	let hexes = "";

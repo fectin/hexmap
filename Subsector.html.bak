@@ -3,29 +3,12 @@
 <head>
 <meta charset="utf-8">
 <title>Hexagonal Grid</title>
-<link rel="icon" type="image/x-icon" href="favicon.ico">
-
 <link rel="stylesheet" href="hexes.css">
-
-<script type ="module">
-	import subsectorMap from './Subsector.js';
-	window.starmap = new subsectorMap ();
-</script>
-
-
 <script>
 "use strict";
-
 function queueDisplayUpdate()	{
-	console.log("hi");
-	
-
-	//let newSubsector = loadSubsector();
-	
-	
 	let colCount = document.getElementById("cols").value;
-	let rowCount = document.getElementById("rows").value; 
-	
+	let rowCount = document.getElementById("rows").value;
 	
 	let hexContent = [];
 	for (let curCol = 0; curCol < colCount; curCol+=1) {
