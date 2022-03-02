@@ -67,7 +67,9 @@ function drawHexes(hexArray) {
 			
 			if (hexArray[curCol][curRow][1][0]){
 				//systems
-				hexes += '<div class = "system"> \u25CB </div>';
+				hexes += '<div class = "system"> ';
+				hexes += (hexArray[curCol][curRow][1][0] ===2 ) ? "W" : "\u25CB"; //fix this. the "w" should be a filled circle for water planets (or vice versa)
+				hexes += '</div>';
 				
 				
 				//starport
