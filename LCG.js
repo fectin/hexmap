@@ -4,7 +4,7 @@
 LCG pseudo-random generator to take a seed and make repeatable pseudorandoms.
 */
 
-export default class LCG {
+export default class lcg {
 	
 	//parameter names are standard for this kind of pseudorandom generator
 	//these values selected to match the UNIX scheme, which is apparently well-regarded.

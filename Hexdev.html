@@ -67,12 +67,25 @@ function drawHexes(hexArray) {
 			
 			if (hexArray[curCol][curRow][1][0]){
 				//systems
-				hexes += '<div class = "system"> \u25CB </div>';
+				hexes += '<div class = "system"> ';
+				hexArray[curCol][curRow][1][0] += (Math.random() > 0.5) ? 1 : 0;  // test only
+				
+				hexes += (hexArray[curCol][curRow][1][0] ===2 ) ? "\u25CB" : "\u25CF"; //fix this. the "w" should be a filled circle for water planets (or vice versa)
+
+				hexes += ' </div>';
 				
 				
 				//starport
-				hexes += '<div class = "starport"> A </div>';
-			
+				hexes += `<div class = "starport"> ${hexArray[curCol][curRow][1][1]} </div>`;
+				
+				//navy base
+				hexes += (hexArray[curCol][curRow][1][2] === 1) ? '<div class = "navyBase"> \u2605</div>' : "";
+				
+				//scout base
+				hexes += (hexArray[curCol][curRow][1][3] === 1) ? '<div class = "scoutBase"> \u25B2</div>' : "";
+				
+				//gas giant
+				hexes += (hexArray[curCol][curRow][1][3] === 1) ? '<div class = "gasGiant"> \u25CF</div>' : "";
 			}
 			
 			/*end of hex content*/
@@ -96,8 +109,10 @@ function drawHexes(hexArray) {
 	<!--This will get replaced by the diplayUpdate function-->
 </style>
 <form>
+<!--
 <input type="text" id="cols" name="columns" value="5">
 <input type="text" id="rows" name="rows" value="3">
+-->
 </form>
 <button type="button" onclick="queueDisplayUpdate()">Show Hex Map!</button>
 
