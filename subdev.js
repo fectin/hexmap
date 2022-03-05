@@ -1,5 +1,10 @@
 "use strict";
 
+//********uncomment for live
+//import LCG from './LCG.js';
+
+
+//** "export default class" for live
 class subsector	{
 	static #rows = 10;
 	static #cols = 8;
@@ -70,17 +75,26 @@ class subsector	{
 	
 	constructor(subSectorName = "The Wilds"){
 		this.#name = subSectorName;
-		this.#dice = {
-			rand()	{
-				return Math.random();
-			},
-			dice(sides = 6)	{
-				return (Math.floor(Math.random()*sides)+1);
-			},
-			getSeed()	{
-				return Math.random()*(2**31);
-			}
-		};
+		
+		
+//***** DEV ONLY. comment this section out to replace with LCG********	//
+		this.#dice = {													//		
+			rand()	{													//
+				return Math.random();									//
+			},															//
+			dice(sides = 6)	{											//
+				return (Math.floor(Math.random()*sides)+1);				//
+			},															//
+			getSeed()	{												//
+				return Math.random()*(2**31);							//
+			}															//
+		};																//
+/*********************************************************************/	//
+		
+//***** uncomment for live
+		//this.#dice = new LCG(subSectorName);
+
+		
 		this.buildSubSector();
 	}
 }
