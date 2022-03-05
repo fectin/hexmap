@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>My First Web Page</h2>
+<p>My first paragraph.</p>
+<script type ="module">
+	import randomizer from './LCG.js';
+	window.rando = new randomizer("franklin");
+</script>
+
+<script>
+	function getnums()	{
+		let numnums = 2500000;
+		let output = "";
+		for (let i = 0; i < numnums; i+=1) {
+			output += `${Math.floor(window.rando.rand()*(2**32))}\n`;
+		}
+		return output;
+	}
+</script>
+
+
+
+<button type="button" onclick="document.write(window.getnums())">Try it</button>
+
+
+
+
+
+</body>
+</html> 

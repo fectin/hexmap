@@ -46,9 +46,11 @@ class subsector	{
 			system[1] = (starportCheck > 11) ? "X" : system[1];		//starport. the numbers are for scout base DMs.
 			scoutDM = parseInt(system[1]);							//Pull the scout DM out
 			system[1] = system[1].slice(0,1);						//plain starport type
+			scoutDM  = isNaN(scoutDM) ? 0 : scoutDM;
 			
-			system[2] = this.#rollCheck(2,8) * (0+(system[1] < 7)); //Naval base. Only there if starport A or B.
-			system[3] = this.#rollCheck(2,8, scoutDM) * (0+(starportCheck < 10)); //Naval base. Only there if starport A-D.
+			
+			system[2] = this.#rollCheck(2,8) * (0+(starportCheck < 7)); //Naval base. Only there if starport A or B.
+			system[3] = this.#rollCheck(2,8, scoutDM) * (0+(starportCheck < 10)); //Scout base. Only there if starport A-D.
 			system[4] = this.#rollCheck(2,-10);
 			system[5] = this.#dice.getSeed();
 			
