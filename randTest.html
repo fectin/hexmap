@@ -2,8 +2,6 @@
 <html>
 <body>
 
-<h2>My First Web Page</h2>
-<p>My first paragraph.</p>
 <script type ="module">
 	import randomizer from './LCG.js';
 	window.rando = new randomizer("franklin");
@@ -11,19 +9,36 @@
 
 <script>
 	function getnums()	{
+		document.write("");
 		let numnums = 2500000;
 		let output = "";
-		for (let i = 0; i < numnums; i+=1) {
-			output += `${Math.floor(window.rando.rand()*(2**32))}\n`;
+		for (let i = 0; i < numnums; i+=10) {
+			output = "";
+			for (let j = 0; j < 11; j+=1) {
+				window.rando.rand();
+				output += window.rando.getSeed().toString(16).padStart(8, '0');
+			}
+			document.writeln(output.slice(0,80));
 		}
-		return output;
 	}
+	
+	function getdice()	{
+		document.write("");
+		let numnums = 100000;
+		let output = "";
+		for (let i = 0; i < numnums; i+=1) {
+			output += window.rando.dice() + ",";
+		}
+		document.writeln(output);
+	}
+	
+	
 </script>
 
 
 
-<button type="button" onclick="document.write(window.getnums())">Try it</button>
-
+<button type="button" onclick="window.getnums()">Get dem NumNums</button>
+<button type="button" onclick="window.getdice()">Roll dem diceys</button>
 
 
 

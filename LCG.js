@@ -10,7 +10,7 @@ export default class lcg {
 	//these values selected to match the UNIX scheme, which is apparently well-regarded.
 	static #a = 1103515245;
 	static #c = 12345;
-	static #modulus = 2 ** 31;
+	static #modulus = ((2 ** 31)-1);
 	#seed = 0;
 
 	rand()	{
