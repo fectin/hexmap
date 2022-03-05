@@ -2,7 +2,7 @@
 
 //********uncomment for live
 //import LCG from './LCG.js';
-
+//import planetNameGen from './planetNames.js';
 
 //** "export default class" for live
 class subsector	{
@@ -11,6 +11,7 @@ class subsector	{
 	#name = "";
 	#map = [];
 	#dice = null;
+	#PNG = null;
 
 	getMap()	{
 		return this.#map;
@@ -57,7 +58,8 @@ class subsector	{
 			system[2] = this.#rollCheck(2,8) * (0+(starportCheck < 7)); //Naval base. Only there if starport A or B.
 			system[3] = this.#rollCheck(2,8, scoutDM) * (0+(starportCheck < 10)); //Scout base. Only there if starport A-D.
 			system[4] = this.#rollCheck(2,-10);
-			system[5] = this.#dice.getSeed();
+			system[5] = this.#PNG.getName();
+			//system[5] = this.#dice.getSeed();
 			
 		}
 		return system;
@@ -79,23 +81,34 @@ class subsector	{
 		this.#name = subSectorName;
 		
 		
-//***** DEV ONLY. comment this section out to replace with LCG********	//
-		this.#dice = {													//		
-			rand()	{													//
-				return Math.random();									//
-			},															//
-			dice(sides = 6)	{											//
-				return (Math.floor(Math.random()*sides)+1);				//
-			},															//
-			getSeed()	{												//
-				return Math.random()*(2**31);							//
-			}															//
-		};																//
-/*********************************************************************/	//
+//***** DEV ONLY. comment this section out to replace with LCG and PNG ***************	//
+//		These functions mimic the behavior of the classes that should be used in live	//
+		this.#dice = {																	//		
+			rand()	{																	//
+				return Math.random();													//
+			},																			//
+			dice(sides = 6)	{															//
+				return (Math.floor(Math.random()*sides)+1);								//
+			},																			//
+			getSeed()	{																//
+				return Math.random()*(2**31);											//
+			}																			//
+		};																				//
+		this.#PNG = {																	//
+			getName()	{																//
+				let names = ['foo','bar','baz','bat','fubar','Fooooo','Bazbat',			//
+							'Fizz','Popper','Fishbreath','Mastodon','George',			//
+							'Underdark','Shadowbad','Amityville','Bartertown',			//
+							'Looney Patooney','Duff','Saxaphahaw','The Enclav', 		//
+							'Batcave','Xanadu','Leng','Timbuktu','Machu']				//
+				return(names[Math.floor(Math.random()*names.length)]);	//
+			}																			//
+		}																				//
+/************************************************************************************/	//
 		
 //***** uncomment for live
 		//this.#dice = new LCG(subSectorName);
-
+		//this.#PNG = new planetNameGen(subSectorName, "random")
 		
 		this.buildSubSector();
 	}

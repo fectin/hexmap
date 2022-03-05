@@ -17,7 +17,7 @@
 	color: var(--hexNumColor, var(--BGColor, #000000));
 	top: 0;
 	display: flex; 
-	height: 55%;
+	height: 50%;
 	align-items:center; 
 	justify-content:center;
 }
@@ -30,7 +30,7 @@
 	top: 0;
 	display: flex; 
 	height: 45%;
-	width: 50%;
+	width: 55%;
 	align-items:flex-end; 
 	justify-content:center;
 }
@@ -42,8 +42,8 @@
 	color: var(--hexNumColor, var(--BGColor, #000000));
 	top: 0;
 	display: flex; 
-	height: 75%;
-	width: 50%;
+	height: 70%;
+	width: 55%;
 	align-items:flex-end; 
 	justify-content:center;
 }
@@ -56,10 +56,25 @@
 	top: 0;
 	display: flex; 
 	height: 45%;
-	width: 80%;
+	width: 78%;
 	align-items:flex-end; 
 	justify-content:right;
 }
+
+.sysName {
+	grid-column: 1 / 1;
+	grid-row: 1 / 1;
+	font-size: calc(var(--fontSize)/2.2);
+	color: var(--hexNumColor, var(--BGColor, #000000));
+	top: 0;
+	display: flex; 
+	height: 85%;
+	width: 100%;
+	align-items:flex-end; 
+	justify-content:center;
+	font-weight: bold;
+}
+
 
 /*
 

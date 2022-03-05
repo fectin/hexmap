@@ -83,7 +83,8 @@ class planetNameGen {
 		}
 	}
 	
-	getName()	{
+	
+	
 		let name = "";
 		if(this.#style==="cadence")	{
 			this.#cadenceNum+=1;
