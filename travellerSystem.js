@@ -1,3 +1,5 @@
+// Data structure: [orbitNumber, orbit type([I]nner/[U]navailable/[H]abitable/[O]uter/[X]other)), orbitcount, [orbiting items, using this format], UPP/type, spaceport, tech, other features]
+//
 // For extending a subsector:
 // Take the main world as input, plus gas giant
 // 
@@ -49,4 +51,38 @@
 // Orbit zones are by star type/size:
 //     inside - inside the star
 //     unavilable - too hot, planet would vaporize
-//     inner - 
+//     inner - TOO MUCH SUN. hot and inhospitible
+//	   habitable - yay.
+//     outer - too far, too cold
+//
+// Check for empty orbits, then check for how many.
+// Place empty orbits by rolling 2D6, reroll on collisions or if > highest available.
+// 
+// Check for captured planets 1d6 on table.
+// if yes, roll 2d6 to select orbit baseline (reroll if too high) and 
+//     roll 2d6-7 to select deviation in tenths (adds another orbit at a fractional distance). So orbit 2 adjusted by -3 would be new orbit 1.7
+// 
+// If gas giant is present, roll for number and place them. If no free orbits, place at least one by adding one to outermost orbit.
+//
+// planetoids are size zero. roll 2d6-[gas giants] on table.
+//     "Asteroid belt" is a primary world of size 0
+//     "planetoid belt" is all others
+//
+// Place components:
+//     Gas giants first - randomly between habitabe and outer; if inner if both are full
+//     Planetoid belts second: randomly among next orbits in from gas giants, then randomly among all orbits.
+//     Finally, main world:
+//         If atmosphere 1- or A+, or size 0, anywhere.
+//		   If gas giant in habitable zone, as satellite
+//		   Else in habitable zone.
+//
+// Generate worlds to fill
+//
+// Generate satellites for worlds
+//
+// Generate addtional characteristics for all worlds/satellites
+
+
+
+
+
