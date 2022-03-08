@@ -90,8 +90,12 @@ function drawHexes(hexArray) {
 				//System Name
 				hexes += `<div class = "sysName"> ${hexArray[curCol][curRow][1][5]} </div>`;
 				
+				
+				//make it a link
+				hexes += `<div class="hexlink"><p><a class="hexLink" href="${starmap.getName()}/${hexArray[curCol][curRow][1][5]}">"${window.location.href.slice(0,-10) + starmap.getName()}/${hexArray[curCol][curRow][1][5]}"</a></p></div>`
+				
 			}
-			
+
 			/*end of hex content*/
 			hexes += "</div></div></li>"
 		}	
