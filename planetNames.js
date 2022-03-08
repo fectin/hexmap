@@ -1,3 +1,12 @@
+/*
+The planet name generator I use here (the random algorithm in this file) is based on a name generating algorithm developed by Emily at 
+https://www.fantasynamegenerators.com/. She has graciously allowed me to re-purpose her work for this project. I extensively refactored 
+her implementation, and I dedicate all *my* inputs to that file to the public domain or license them under Creative Commons CC-0 license. 
+In short, you need Emily's permission to re-use that file, but you do not need mine. 
+
+*/
+
+
 "use strict"
 
 //** uncomment for live
@@ -84,7 +93,7 @@ class planetNameGen {
 	}
 	
 	
-	
+	getName(){
 		let name = "";
 		if(this.#style==="cadence")	{
 			this.#cadenceNum+=1;
@@ -124,7 +133,7 @@ class planetNameGen {
 		};
 		/**/
 //***** uncomment for live
-		//this.#RNG = new LCG(subSectorName);
+		//this.#RNG = new LCG(rootName);
 		
 		
 		//select name style

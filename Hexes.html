@@ -6,35 +6,37 @@
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 
 <link rel="stylesheet" href="hexes.css">
+<link rel="stylesheet" href="travellerSubsector.css">
 
 <script type ="module">
-	import subsectorMap from './Subsector.js';
-	window.starmap = new subsectorMap ();
+	import subsectorMap from './subsector.js';
+	window.starmap = new subsectorMap();
 </script>
 
 
 <script>
 "use strict";
 
+
 function queueDisplayUpdate()	{
-	console.log("hi");
 	
 
-	//let newSubsector = loadSubsector();
-	
-	
-	let colCount = document.getElementById("cols").value;
-	let rowCount = document.getElementById("rows").value; 
-	
-	
-	let hexContent = [];
-	for (let curCol = 0; curCol < colCount; curCol+=1) {
-		hexContent[curCol] = [];
-		for(let curRow = 0; curRow < rowCount; curRow+=1) {
-			hexContent[curCol][curRow] = `${(curCol < 9 ? '0' : '') + (curCol+1)}` + `${(curRow < 9 ? '0' : '')+(curRow+1)}`;
-		}
-	}
-	drawHexes(hexContent);
+//	//let newSubsector = loadSubsector();
+//	
+//	
+//	let colCount = document.getElementById("cols").value;
+//	let rowCount = document.getElementById("rows").value; 
+//	
+//	
+//	let hexContent = [];
+//	for (let curCol = 0; curCol < colCount; curCol+=1) {
+//		hexContent[curCol] = [];
+//		for(let curRow = 0; curRow < rowCount; curRow+=1) {
+//			hexContent[curCol][curRow] = `${(curCol < 9 ? '0' : '') + (curCol+1)}` + `${(curRow < 9 ? '0' : '')+(curRow+1)}`;
+//		}
+//	}
+//	drawHexes(hexContent);
+	drawHexes(window.starmap.getMap());
 }
 
 
@@ -54,19 +56,60 @@ function drawHexes(hexArray) {
 	let rowCount = hexArray[0].length;
 	
 	displayStuff += ":root {"
-	displayStuff += `	--colCount: ${colCount};`
-	displayStuff += `	--rowCount: ${rowCount};`
-	displayStuff += `	--padSize: ${padSize};`
+	displayStuff += `	--colCount: ${colCount};  `
+	displayStuff += `	--rowCount: ${rowCount};  `
+	displayStuff += `	--padSize: ${padSize};  `
 	displayStuff += "}"
 	
+	
+	
+	hexes += `<h2> ${starmap.getName()} </h2>`;
 	hexes += `<ul class="hex-grid__list">`
 	for (let curCol = 0; curCol < colCount; curCol+=1) {
 		for(let curRow = 0; curRow < rowCount; curRow+=1) {
 			hexes += `<li class="hex-grid__item" style = "grid-area: ${(((curRow+1)*2) - ((curCol+1)%2) )} / ${(curCol*2)+1} / span 2 / span 3;">`;
-			hexes += `<div class="hex-grid__content">`;	
-			//This adds the content
-			hexes += hexArray[curCol][curRow];			
-			hexes += "</div></li>"
+			hexes += `<div class="hex-grid__background">`;	
+			
+			hexes += `<div class="hex-grid__content">`			
+
+
+			//hex numbers
+			hexes += `<div class="hex-grid__hexNums"> ${hexArray[curCol][curRow][0]}</div>`;
+
+
+
+			/*Add all the hex content in here.*/
+
+			
+			if (hexArray[curCol][curRow][1][0]){
+				//systems
+				hexes += '<div class = "system"> ';
+				hexArray[curCol][curRow][1][0] += (Math.random() > 0.5) ? 1 : 0;  // test only
+				
+				hexes += (hexArray[curCol][curRow][1][0] ===2 ) ? "\u25CB" : "\u25CF"; //fix this. the "w" should be a filled circle for water planets (or vice versa)
+
+				hexes += ' </div>';
+				
+				
+				//starport
+				hexes += `<div class = "starport"> ${hexArray[curCol][curRow][1][1]} </div>`;
+				
+				//navy base
+				hexes += (hexArray[curCol][curRow][1][2] === 1) ? '<div class = "navyBase"> \u2605</div>' : "";
+				
+				//scout base
+				hexes += (hexArray[curCol][curRow][1][3] === 1) ? '<div class = "scoutBase"> \u25B2</div>' : "";
+				
+				//gas giant
+				hexes += (hexArray[curCol][curRow][1][4] === 1) ? '<div class = "gasGiant"> \u25CF</div>' : "";
+				
+				//System Name
+				hexes += `<div class = "sysName"> ${hexArray[curCol][curRow][1][5]} </div>`;
+				
+			}
+			
+			/*end of hex content*/
+			hexes += "</div></div></li>"
 		}	
 	}
 	hexes += `</ul>`
@@ -85,10 +128,7 @@ function drawHexes(hexArray) {
 <style id="cssVars">
 	<!--This will get replaced by the diplayUpdate function-->
 </style>
-<form>
-<input type="text" id="cols" name="columns" value="5">
-<input type="text" id="rows" name="rows" value="3">
-</form>
+
 <button type="button" onclick="queueDisplayUpdate()">Show Hex Map!</button>
 
 
