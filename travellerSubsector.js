@@ -5,6 +5,7 @@
 //import planetNameGen from './planetNames.js';
 
 //** "export default class" for live
+
 class subsector	{
 	static #rows = 10;
 	static #cols = 8;
@@ -12,6 +13,7 @@ class subsector	{
 	#map = [];
 	#dice = null;
 	#PNG = null;
+	#live = true;
 
 	getMap()	{
 		return this.#map;
@@ -59,13 +61,19 @@ class subsector	{
 			system[3] = this.#rollCheck(2,8, scoutDM) * (0+(starportCheck < 10)); //Scout base. Only there if starport A-D.
 			system[4] = this.#rollCheck(2,-10);
 			system[5] = this.#PNG.getName();
-			//system[5] = this.#dice.getSeed();
 			
 		}
 		return system;
 	}
 	
-	buildSubSector()	{
+	buildSubSector(subSectorName = "The Wilds")	{
+		this.#name = subSectorName;
+		if(this.#live){
+			this.#dice = new LCG(subSectorName);
+			this.#PNG = new planetNameGen(subSectorName, "random");
+		}
+
+
 		for (let curCol = 0; curCol < subsector.#cols; curCol+=1) {
 			this.#map[curCol] = [];
 			for(let curRow = 0; curRow < subsector.#rows; curRow+=1) {
@@ -77,12 +85,11 @@ class subsector	{
 
 	}
 	
-	constructor(subSectorName = "The Wilds"){
-		this.#name = subSectorName;
-		
-		
+	constructor(subSectorName = "Wyldd Zone"){
 //***** DEV ONLY. comment this section out to replace with LCG and PNG ***************	//
 //		These functions mimic the behavior of the classes that should be used in live	//
+		this.#live = false;
+		this.#name = subSectorName;
 		this.#dice = {																	//		
 			rand()	{																	//
 				return Math.random();													//
@@ -103,13 +110,11 @@ class subsector	{
 							'Batcave','Xanadu','Leng','Timbuktu','Machu']				//
 				return(names[Math.floor(Math.random()*names.length)]);	//
 			}																			//
-		}																				//
+		}				
+		this.buildSubSector(subSectorName );																		//
 /************************************************************************************/	//
 		
-//***** uncomment for live
-		//this.#dice = new LCG(subSectorName);
-		//this.#PNG = new planetNameGen(subSectorName, "random")
-		
-		this.buildSubSector();
+
+
 	}
 }

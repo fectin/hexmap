@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="travellerSubsector.css">
 
 <script type ="module">
-	import subsectorMap from './subsector.js';
+	import subsectorMap from './travellerSubsector.js';
 	window.starmap = new subsectorMap();
 </script>
 
@@ -19,7 +19,7 @@
 
 
 function queueDisplayUpdate()	{
-	
+	window.starmap.buildSubSector(document.getElementById("fname").value)
 
 //	//let newSubsector = loadSubsector();
 //	
@@ -63,7 +63,7 @@ function drawHexes(hexArray) {
 	
 	
 	
-	hexes += `<h2> ${starmap.getName()} </h2>`;
+	//hexes += `<h2> ${starmap.getName()} </h2>`;
 	hexes += `<ul class="hex-grid__list">`
 	for (let curCol = 0; curCol < colCount; curCol+=1) {
 		for(let curRow = 0; curRow < rowCount; curRow+=1) {
@@ -128,9 +128,7 @@ function drawHexes(hexArray) {
 <style id="cssVars">
 	<!--This will get replaced by the diplayUpdate function-->
 </style>
-
-<button type="button" onclick="queueDisplayUpdate()">Show Hex Map!</button>
-
+<input type="text" id="fname" name="fname" value="The Wyldd"> <button type="button" onclick="queueDisplayUpdate()">Show Hex Map!</button>
 
 <div id="hexlist">
 	<!--This will get replaced by the diplayUpdate function-->
