@@ -81,8 +81,96 @@
 // Generate satellites for worlds
 //
 // Generate addtional characteristics for all worlds/satellites
+//
+//[orbitNumber, orbit type([I]nner/[U]navailable/[H]abitable/[O]uter/[X]other)), orbitcount, [orbiting items, using this format], UPP/type, spaceport, tech, other features]
 
 
+//********uncomment for live
+//import LCG from './LCG.js';
+//import planetNameGen from './planetNames.js';
+
+//** "export default class" for live
+
+class orbiter(){
+	
+	"??
+	
+}
+
+class system(){
+	sysTree =[];
+	nature="";
+	
+	makeNature
+	
+	
+	makeSun(type = "primary")	{
+		
+	}
+	
+	
+	
+	
+	#rollDice(numDice, DM1=0, DM2=0, DM3=0, DM4=0, DM5=0)	{
+		let DM = DM1+DM2+DM3+DM4+DM5;
+		//console.log(`numdice = ${numDice}   DM = ${DM}`);
+		return (numDice < 1) ? DM : (this.#rollDice(numDice-1, this.#dice.dice()) + DM);
+	}
+	
+	#rollCheck(numDice, TN, DM1=0, DM2=0, DM3=0, DM4=0, DM5=0){
+		if (TN > 0)	{
+			return (this.#rollDice(numDice, (DM1+DM2+DM3+DM4+DM5)) >= TN) ? 1 : 0;
+		} else	{
+			return (this.#rollDice(numDice, (DM1+DM2+DM3+DM4+DM5)) <= (TN*-1)) ? 1 : 0;
+		}
+	}
+
+	
+	
+	
+	
+	
+	constructor(primary = ["Wooten","A","777777","8"]){
+		
+
+
+//***** DEV ONLY. comment this section out to replace with LCG and PNG ***************	//
+//		These functions mimic the behavior of the classes that should be used in live	//
+		this.#live = false;
+		this.#name = subSectorName;
+		this.#dice = {																	//		
+			rand()	{																	//
+				return Math.random();													//
+			},																			//
+			dice(sides = 6)	{															//
+				return (Math.floor(Math.random()*sides)+1);								//
+			},																			//
+			getSeed()	{																//
+				return Math.random()*(2**31);											//
+			}																			//
+		};																				//
+		this.#PNG = {																	//
+			getName()	{																//
+				let names = ['foo','bar','baz','bat','fubar','Fooooo','Bazbat',			//
+							'Fizz','Popper','Fishbreath','Mastodon','George',			//
+							'Underdark','Shadowbad','Amityville','Bartertown',			//
+							'Looney Patooney','Duff','Saxaphahaw','The Enclav', 		//
+							'Batcave','Xanadu','Leng','Timbuktu','Machu']				//
+				return(names[Math.floor(Math.random()*names.length)]);	//
+			}																			//
+		}				
+		this.buildSubSector(subSectorName );																		//
+/************************************************************************************/	//
+		
+		this.#name = subSectorName;
+		if(this.#live){
+			this.#dice = new LCG(subSectorName);
+			this.#PNG = new planetNameGen(subSectorName, "random");
+		}
+
+	}
+
+}
 
 
 
