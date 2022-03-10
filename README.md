@@ -1,7 +1,7 @@
-# hexmap
+#hexmap
 
-This is a basic shell for making hexmaps.
+This started as a basic shell for making hexmaps. I will probably separate that shell  back out later.
 
 I used the basic technique described by https://ninjarockstar.dev/css-hex-grids/ , but debugged it and reworked it to scale properly. 
 
-There is a wedge in the page for adding content later. 
+Now it is a program for building Classic Traveller sectors. In making this, I used the planet name generator (by permission, see license) from the inimitable https://www.fantasynamegenerators.com/
