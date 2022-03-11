@@ -82,7 +82,7 @@
 //
 // Generate addtional characteristics for all worlds/satellites
 //
-//[orbitNumber, orbit type([I]nner/[U]navailable/[H]abitable/[O]uter/[X]other)), orbitcount, [orbiting items, using this format], UPP/type, spaceport, tech, other features]
+//[orbitNumber, orbit type([I]nner/[U]navailable/[H]abitable/[O]uter/[X]other)), [orbiting items, using this format], UPP/type, spaceport, tech, other features]
 
 
 //********uncomment for live
@@ -91,22 +91,41 @@
 
 //** "export default class" for live
 
-class orbiter(){
-	
-	"??
-	
-}
+
 
 class system(){
-	sysTree =[];
+	contents =[];
 	nature="";
-	
-	makeNature
-	
-	
-	makeSun(type = "primary")	{
+	mainUPP = "";
+	name = ""
+	mainATM = 0;
 		
+	orbiter(orbitNumber = 0, orbitType = "X", children = [], uppType = "", spaceport = "", tech = 0, features = [] ){
+		skyRock = [orbitNumber, orbitType, children, uppType, spaceport, tech, features];
+		return(skyRock);
 	}
+		
+	makeSun(type = "primary")	{
+		//upp is:
+		//"S" - for sun
+		//system nature - s/b/t/q	
+		//type - OBAFGKM
+		//subtype - 0-9
+		//size - 0 is Ia, 1 is 1b. 2-6 as written. 9 is dwarf.
+		let natureRoll = this.#rollDice(2);
+	}
+	
+	makeNature(){
+		let natureRoll = this.#rollDice(2);		
+		
+		
+		
+		if (natureRoll < 8){
+		}
+	}
+	
+	
+
 	
 	
 	
@@ -130,14 +149,16 @@ class system(){
 	
 	
 	
-	constructor(primary = ["Wooten","A","777777","8"]){
+	constructor(primary = ["Wooten","A","345678","8"]){
+		this.name = primary[0];
+		this.mainUPP = primary[1]+primary[2]+primary[3];
+		this.mainATM = parseInt(this.mainUPP.slice(2,1), 16);
+		this.mainPop = parseInt(this.mainUPP.slice(4,1), 16);
 		
-
 
 //***** DEV ONLY. comment this section out to replace with LCG and PNG ***************	//
 //		These functions mimic the behavior of the classes that should be used in live	//
 		this.#live = false;
-		this.#name = subSectorName;
 		this.#dice = {																	//		
 			rand()	{																	//
 				return Math.random();													//
@@ -159,13 +180,12 @@ class system(){
 				return(names[Math.floor(Math.random()*names.length)]);	//
 			}																			//
 		}				
-		this.buildSubSector(subSectorName );																		//
+																				//
 /************************************************************************************/	//
 		
-		this.#name = subSectorName;
 		if(this.#live){
-			this.#dice = new LCG(subSectorName);
-			this.#PNG = new planetNameGen(subSectorName, "random");
+			this.#dice = new LCG(this.name);
+			this.#PNG = new planetNameGen(this.name, "random");
 		}
 
 	}
