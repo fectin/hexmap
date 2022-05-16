@@ -129,7 +129,6 @@ class system(){
 	
 	
 	
-	
 	#rollDice(numDice, DM1=0, DM2=0, DM3=0, DM4=0, DM5=0)	{
 		let DM = DM1+DM2+DM3+DM4+DM5;
 		//console.log(`numdice = ${numDice}   DM = ${DM}`);
@@ -154,7 +153,7 @@ class system(){
 		this.mainUPP = primary[1]+primary[2]+primary[3];
 		this.mainATM = parseInt(this.mainUPP.slice(2,1), 16);
 		this.mainPop = parseInt(this.mainUPP.slice(4,1), 16);
-		
+		this.#live = true;
 
 //***** DEV ONLY. comment this section out to replace with LCG and PNG ***************	//
 //		These functions mimic the behavior of the classes that should be used in live	//

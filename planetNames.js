@@ -1,8 +1,10 @@
 /*
 The planet name generator I use here (the random algorithm in this file) is based on a name generating algorithm developed by Emily at 
 https://www.fantasynamegenerators.com/. She has graciously allowed me to re-purpose her work for this project. I extensively refactored 
-her implementation, and I dedicate all *my* inputs to that file to the public domain or license them under Creative Commons CC-0 license. 
-In short, you need Emily's permission to re-use that file, but you do not need mine. 
+her implementation, and I dedicate all *my* inputs to that file to the public domain AND I hereby license them under Creative Commons CC-0 
+license. 
+
+In short, you need Emily's permission to re-use this file, but you do not need mine. 
 
 */
 
